@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 19th Birthday Chinmay 🎉</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .typewriter {
+      font-size: 1.3rem;
+      border-right: 2px solid #ffcc70;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.8s infinite;
+    }
+
+    .hero button {
+      margin-top: 30px;
+      padding: 14px 32px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background: #ffcc70;
+      color: #000;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      transform: scale(1.08);
+    }
+
+    /* MEMORY CARDS */
+    .memories {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: 0.5s;
+    }
+
+    .card:hover {
+      transform: rotateY(10deg) translateY(-12px) scale(1.05);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* COUNTDOWN */
+    .countdown {
+      font-size: 2rem;
+      color: #ffcc70;
+      margin-top: 20px;
+    }
+
+    /* AGE */
+    .number {
+      font-size: 9rem;
+      font-weight: 700;
+      color: #ffcc70;
+      animation: glow 2s infinite alternate;
+    }
+
+    /* SECRET */
+    .secret {
+      display: none;
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ffcc70; }
+      to { text-shadow: 0 0 30px #ffd98e; }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONFETTI CANVAS -->
+  <canvas id="confetti"></canvas>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Happy Birthday Chinmay 🎉</h1>
+      <div class="typewriter">23rd January 2026 · Level 19 Unlocked 🚀</div>
+      <button onclick="scrollToSection('memories')">Start the Journey 🚀</button>
+    </div>
+  </section>
+
+  <!-- MEMORIES -->
+  <section class="memories" id="memories">
+    <h2>Why You Are Special 💙</h2>
+    <div class="cards">
+      <div class="card">Always real, always honest — never fake.</div>
+      <div class="card">Brains + heart = rare combo.</div>
+      <div class="card">The kind of friend everyone needs.</div>
+      <div class="card">Future legend in the making 🚀</div>
+    </div>
+  </section>
+
+  <!-- AGE -->
+  <section class="age" onclick="revealSecret()">
+    <div>
+      <div class="number">19</div>
+      <p>(Tap the number 👀)</p>
+    </div>
+  </section>
+
+  <section class="secret" id="secret">
+    <h2>🎁 Surprise Message</h2>
+    <p>
+      If you found this, it means you're curious — and curiosity builds legends.
+      The world is yours, Chinmay. Go claim it 🌍✨
+    </p>
+  </section>
+
+  <!-- MESSAGE -->
+  <section class="message">
+    <p>
+      Dear <b>Chinmay Patil</b>,<br><br>
+      This website is not just code — it's appreciation, respect, and friendship written in HTML, CSS, and JavaScript.
+      May your 19th year bring clarity, confidence, success, and happiness.
+      Never stop learning, never stop dreaming, and never forget how powerful you are.
+      <br><br>
+      Cheers to growth, wins, and memories yet to come 🥂
+    </p>
+  </section>
+
+  <footer>
+    Made with <3 by your friend · January 2026
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Countdown */
+    const countdownEl = document.createElement('div');
+    countdownEl.className = 'countdown';
+    document.querySelector('.hero div').appendChild(countdownEl);
+
+    function updateCountdown() {
+      const birthday = new Date('2026-01-23T00:00:00');
+      const now = new Date();
+      const diff = birthday - now;
+      if (diff <= 0) {
+        countdownEl.textContent = '🎉 It\'s Chinmay\'s Birthday!';
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      countdownEl.textContent = `${days} days to go 🎂`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    /* Secret Reveal */
+    function revealSecret() {
+      document.getElementById('secret').style.display = 'flex';
+      document.getElementById('secret').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* Confetti */
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confetti = Array.from({ length: 150 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 6 + 2,
+      d: Math.random() * 100,
+      color: `hsl(${Math.random() * 360}, 100%, 70%)`
+    }));
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach(c => {
+        ctx.beginPath();
+        ctx.fillStyle = c.color;
+        ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+        ctx.fill();
+        c.y += Math.cos(c.d) + 1;
+        if (c.y > canvas.height) c.y = -10;
+      });
+    }
+
+    setInterval(draw, 20);
+  </script>
+
+</body>
+</html>
